@@ -13,8 +13,6 @@ SCREEN_HEIGHT = 500
 BACKGROUND_COLOR = (0,0,0)
 clock = pygame.time.Clock()
 bubble_radius = 30
-HIGH_SCORE_FILE = open('highscore.txt','r')
-highscore = HIGH_SCORE_FILE.read()
 
 window_surface = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 window_surface.fill(BACKGROUND_COLOR)
@@ -81,6 +79,9 @@ while True:
     if(game_mode == 2):
         curScore = str(format(int((end-start)/60),'02d'))+':'+format((end-start)%60,'05.2f')
         scoreboard = scoreText.render('Spend Time: '+curScore, True,(255,255,255))
+        HIGH_SCORE_FILE = open('highscore.txt','r')
+        highscore = HIGH_SCORE_FILE.read()
+        HIGH_SCORE_FILE.close()
         highscoreboard = highScoreText.render('Highest Score: '+ min(curScore,highscore) , True,(255,255,255))
         HIGH_SCORE_FILE = open('highscore.txt','w')
         HIGH_SCORE_FILE.write(min(curScore,highscore))
